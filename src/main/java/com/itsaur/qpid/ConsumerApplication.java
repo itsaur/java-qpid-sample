@@ -10,7 +10,6 @@ public class ConsumerApplication {
         CountDownLatch latch = new CountDownLatch(1);
 
         Consumer consumer = new Consumer(new ConnectionProperties("amqp://localhost:5672", null, null), "TEST");
-        consumer.listen();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {

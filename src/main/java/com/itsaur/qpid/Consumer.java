@@ -21,9 +21,10 @@ public class Consumer implements AutoCloseable {
         this.session = (JmsSession) connection.createSession();
         this.consumer = session.createConsumer(session.createQueue(queue));
         connection.start();
+        listen();
     }
 
-    public void listen() throws JMSException {
+    private void listen() throws JMSException {
         consumer.setMessageListener(message -> {
             try {
                 System.out.println("--- Received message ---");
