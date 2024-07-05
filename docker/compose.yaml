@@ -1,0 +1,23 @@
+version: '3.9'
+
+networks:
+  qpid:
+
+name: qpid
+
+services:
+
+  broker:
+    image: scholzj/qpid-cpp:1.39.0
+    networks:
+      - qpid
+    ports:
+      - "5672:5672"
+
+  seed:
+    build:
+      context: seed
+    environment:
+      QUEUES: TEST
+    networks:
+      - qpid
